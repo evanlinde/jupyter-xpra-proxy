@@ -7,8 +7,18 @@ for more information.
 import os
 
 def setup_xpra():
+    def _get_cmd(port):
+        return [
+            'xpra', 
+            'start-desktop', 
+            '--start=xfce4-session', 
+            '--bind-tcp=0.0.0.0:' + str(port), 
+            '--html=on', 
+            '--auth=allow'
+        ]
+
     return {
-        'command': [ 'xpra', 'start-desktop', '--start=xfce4-session', '--bind-tcp=0.0.0.0:' + str(port), '--html=on', '--auth=allow' ],
+        'command': _get_cmd,
         'environment': {},
         'launcher_entry': {
             'title': 'xpra',
